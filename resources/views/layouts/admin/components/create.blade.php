@@ -14,11 +14,7 @@
                         </div>
                     @endif
 
-
-
-
-
-                    <form action="{{ route('pages.store') }}" method="POST">
+                    <form action="{{ route('components.store') }}" method="POST">
                         @csrf
                     <!-- Default box -->
                     <div class="card card-primary">
@@ -33,11 +29,11 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="inputName">Наименование страницы</label>
+                                <label for="inputName">Наименование компонента</label>
                                 <input name="name" type="text" id="inputName" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="inputName">Url страницы</label>
+                                <label for="inputName">url компонента</label>
                                 <input name="slug" type="text" id="inputName" class="form-control">
                             </div>
                         </div>
@@ -46,7 +42,7 @@
                     <!-- /.card -->
 
                     <div class="col-12">
-                        <a href="{{route('pages.index')}}" class="btn btn-secondary">Cancel</a>
+                        <a href="{{route('components.index')}}" class="btn btn-secondary">Cancel</a>
                         <input type="submit" value="Create new Project" class="btn btn-success float-right">
                     </div>
                     </form>

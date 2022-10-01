@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\admin\pages;
-
+namespace App\Http\Controllers\admin\pages_and_components;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use App\Http\Controllers\Controller;
-use App\Models\Component;
-use App\Models\Page;
+use App\Models\Component_8;
 use App\Models\PageAndComponent;
 use Illuminate\Http\Request;
-//use App\Models;
 
-class pageController extends Controller
+class PagesAndComponentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +17,7 @@ class pageController extends Controller
      */
     public function index()
     {
-        $all_pages = Page::all();
-        return view('layouts.admin.pages.index', compact('all_pages'));
+        //
     }
 
     /**
@@ -29,8 +27,7 @@ class pageController extends Controller
      */
     public function create()
     {
-        $all_pages = Page::all();
-        return view('layouts.admin.pages.create', compact('all_pages'));
+        //
     }
 
     /**
@@ -41,32 +38,25 @@ class pageController extends Controller
      */
     public function store(Request $request)
     {
-//        if($request->)
 
         $validated = $request->validate([
-            'name' => 'required|unique:pages',
-            'slug' => 'required',
+            'page_id' => 'required',
+            'component_id' => 'required',
         ]);
 
-        $page = new Page;
+        $PageAndComponent = new PageAndComponent();
 
         foreach ($validated as $key => $item){
-            $page[$key] = $item;
+            $PageAndComponent[$key] = $item;
         }
 
-        $page->save();
-
-
-        if($page){
-
-            return redirect('/admin/pages')->with('status', 'Page add!');
-
+        $PageAndComponent->save();
+        $back = url()->previous();
+        if($PageAndComponent){
+            return redirect($back)->with('status', 'colum '.$request->name.' id add!');
         }else{
-
-            return redirect('/admin/pages')->with('status', 'Error');
+            return redirect($back)->with('status', 'ОШИБКА');
         }
-
-
 
     }
 
@@ -89,15 +79,15 @@ class pageController extends Controller
      */
     public function edit($id)
     {
-        $this_page_components = PageAndComponent::where('page_id', $id)->get();
-        $all_components = Component::all();
-        $all_pages = Page::all();
-        $page = Page::FindOrFail($id);
-        $page_id = $id;
 
+        $page_and_component = PageAndComponent::where('id', $id)->first();
 
-        return view('layouts.admin.pages.edit',
-            compact('page', 'all_pages', 'this_page_components', 'all_components', 'page_id'));
+        $class_name = 'App\Models\Component_' . $page_and_component->component_id;
+        $data = $class_name::where('id_in_pages_and_components', $id)->get();
+
+        $attr = Schema::getColumnListing('component_8');
+
+        return view('layouts.admin.infoblock.index', compact('data', 'attr', 'id'));
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomFieldsTable extends Migration
+class PagesAndComponents extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,18 @@ class CreateCustomFieldsTable extends Migration
      */
     public function up()
     {
-        Schema::create('custom_fields', function (Blueprint $table) {
+        Schema::create('pages_and_components', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('page_id');
+            $table->unsignedBigInteger('component_id');
+
             $table->foreign('page_id')->references('id')->on('pages');
-            $table->string('name');
-            $table->string('value');
+            $table->foreign('component_id')->references('id')->on('components');
+
             $table->timestamps();
         });
+
     }
 
     /**
@@ -30,6 +34,6 @@ class CreateCustomFieldsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('custom_fields');
+        Schema::dropIfExists('pages_and_components');
     }
 }

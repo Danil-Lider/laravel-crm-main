@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin\pages;
+namespace App\Http\Controllers\admin\infoblocks;
 
 use App\Http\Controllers\Controller;
-use App\Models\Component;
-use App\Models\Page;
-use App\Models\PageAndComponent;
 use Illuminate\Http\Request;
-//use App\Models;
 
-class pageController extends Controller
+class InfoblockValuesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +14,7 @@ class pageController extends Controller
      */
     public function index()
     {
-        $all_pages = Page::all();
-        return view('layouts.admin.pages.index', compact('all_pages'));
+        //
     }
 
     /**
@@ -29,8 +24,7 @@ class pageController extends Controller
      */
     public function create()
     {
-        $all_pages = Page::all();
-        return view('layouts.admin.pages.create', compact('all_pages'));
+        //
     }
 
     /**
@@ -41,33 +35,7 @@ class pageController extends Controller
      */
     public function store(Request $request)
     {
-//        if($request->)
-
-        $validated = $request->validate([
-            'name' => 'required|unique:pages',
-            'slug' => 'required',
-        ]);
-
-        $page = new Page;
-
-        foreach ($validated as $key => $item){
-            $page[$key] = $item;
-        }
-
-        $page->save();
-
-
-        if($page){
-
-            return redirect('/admin/pages')->with('status', 'Page add!');
-
-        }else{
-
-            return redirect('/admin/pages')->with('status', 'Error');
-        }
-
-
-
+        //
     }
 
     /**
@@ -87,17 +55,9 @@ class pageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id, $sub_id)
     {
-        $this_page_components = PageAndComponent::where('page_id', $id)->get();
-        $all_components = Component::all();
-        $all_pages = Page::all();
-        $page = Page::FindOrFail($id);
-        $page_id = $id;
-
-
-        return view('layouts.admin.pages.edit',
-            compact('page', 'all_pages', 'this_page_components', 'all_components', 'page_id'));
+        dd($sub_id);
     }
 
     /**

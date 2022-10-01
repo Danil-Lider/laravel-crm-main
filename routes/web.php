@@ -24,11 +24,34 @@ Route::prefix('admin')->group(function () {
 
     Route::resource('pages', \App\Http\Controllers\admin\pages\pageController::class);
 
-//    Route::get('/users', function () {
-        // Соответствует URL-адресу `/admin/users` ...
-//    });
+    Route::resource('custom', \App\Http\Controllers\admin\customFieldController::class);
+
+    Route::resource('components', \App\Http\Controllers\admin\components\componentsController::class);
+
+    Route::resource('infoblock', \App\Http\Controllers\admin\pages_and_components\PagesAndComponentsController::class);
+
+    Route::resource('infoblock.values', \App\Http\Controllers\admin\infoblocks\InfoblockValuesController::class);
+
+//    Route::resources([
+//        'infoblock' => PhotoController::class,
+//        'infoblock-value' => PostController::class,
+//    ]);
+//
+//    Route::resource('infoblock', \App\Http\Controllers\admin\pages_and_components\PagesAndComponentsController::class);
+
 });
 
+Route::get('/{slug}', [\App\Http\Controllers\PageController::class, 'index']);
+
+
+
+
+//$pages = \App\Models\Page::all();
+
+//foreach ($pages as $key => $page){
+//}
+
+//dd($page);
 
 
 

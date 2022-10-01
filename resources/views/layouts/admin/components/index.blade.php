@@ -48,8 +48,9 @@
                                     </th>
                                 </tr>
                                 </thead>
+                                @if(!empty($components))
                                 <tbody>
-                                @foreach($all_pages as $key => $page)
+                                @foreach($components as $key => $page)
                                 <tr>
                                     <td>
                                         {{ $key }}
@@ -97,7 +98,7 @@
                                             </i>
                                             View
                                         </a>
-                                        <a class="btn btn-info btn-sm" href="{{ route('pages.edit',$page->id) }}">
+                                        <a class="btn btn-info btn-sm" href="{{ route('components.edit',$page->id) }}">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Edit
@@ -111,6 +112,7 @@
                                 </tr>
                                 @endforeach
                                 </tbody>
+                                @endif
                             </table>
                         </div>
                         <!-- /.card-body -->
@@ -118,7 +120,7 @@
                     <!-- /.card -->
 
                     <div class="col-12">
-                        <a href="{{route('pages.create')}}" class="btn btn-success float-right">Создать новую страницу</a>
+                        <a href="{{route('components.create')}}" class="btn btn-success float-right">Создать новую страницу</a>
 {{--                        <input type="submit" value="Create new Project" class="btn btn-success float-right">--}}
                     </div>
 
