@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class PagesAndComponents extends Migration
+class CreateInfoblocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class PagesAndComponents extends Migration
      */
     public function up()
     {
-        Schema::create('pages_and_components', function (Blueprint $table) {
+        Schema::create('infoblocks', function (Blueprint $table) {
             $table->id();
+
+            $table->string('name');
 
             $table->unsignedBigInteger('page_id');
             $table->unsignedBigInteger('component_id');
@@ -22,9 +24,13 @@ class PagesAndComponents extends Migration
             $table->foreign('page_id')->references('id')->on('pages');
             $table->foreign('component_id')->references('id')->on('components');
 
+
+            $table->integer('sort');
+
+
+
             $table->timestamps();
         });
-
     }
 
     /**
@@ -34,6 +40,6 @@ class PagesAndComponents extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages_and_components');
+        Schema::dropIfExists('infoblocks');
     }
 }

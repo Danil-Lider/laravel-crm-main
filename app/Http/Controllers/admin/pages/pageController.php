@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin\pages;
 use App\Http\Controllers\Controller;
 use App\Models\Component;
 use App\Models\Page;
-use App\Models\PageAndComponent;
+use App\Models\Infoblock;
 use Illuminate\Http\Request;
 //use App\Models;
 
@@ -89,7 +89,7 @@ class pageController extends Controller
      */
     public function edit($id)
     {
-        $this_page_components = PageAndComponent::where('page_id', $id)->get();
+        $this_page_components = Infoblock::where('page_id', $id)->get();
         $all_components = Component::all();
         $all_pages = Page::all();
         $page = Page::FindOrFail($id);

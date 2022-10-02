@@ -52,6 +52,12 @@
                                                 <th style="width: 20%">
                                                     id компонента
                                                 </th>
+                                                <th style="width: 20%">
+                                                    наименование компонента
+                                                </th>
+                                                <th style="width: 20%">
+                                                    сортировка компонента
+                                                </th>
                                                 <th style="width: 8%" class="text-center">
                                                     Статус
                                                 </th>
@@ -74,6 +80,8 @@
                                                             Created  {{ $this_page_component->created_at }}
                                                         </small>
                                                     </td>
+                                                    <td> {{ $this_page_component->name }}</td>
+                                                    <td> {{ $this_page_component->sort }}</td>
                                                     <td class="project-state">
                                                         <span class="badge badge-success">Success</span>
                                                     </td>
@@ -111,6 +119,14 @@
                                                     <option   value="{{$component->id}}">{{$component->name}}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="component_id">Наименование инфоблока</label>
+                                            <input name="name" class="form-control" type="text" placeholder="Наименование инфоблока" aria-label="Наименование инфоблока">
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="component_id">сортировка инфоблока</label>
+                                            <input name="sort" class="form-control" type="number" value="100" placeholder="сортировка инфоблока" aria-label="сортировка инфоблока">
                                         </div>
                                         <input type="submit" value="Добавить" class="btn btn-success">
                                     </form>

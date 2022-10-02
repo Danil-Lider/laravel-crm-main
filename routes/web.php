@@ -28,7 +28,7 @@ Route::prefix('admin')->group(function () {
 
     Route::resource('components', \App\Http\Controllers\admin\components\componentsController::class);
 
-    Route::resource('infoblock', \App\Http\Controllers\admin\pages_and_components\PagesAndComponentsController::class);
+    Route::resource('infoblock', \App\Http\Controllers\admin\infoblocks\InfoblockController::class);
 
     Route::resource('infoblock.values', \App\Http\Controllers\admin\infoblocks\InfoblockValuesController::class);
 

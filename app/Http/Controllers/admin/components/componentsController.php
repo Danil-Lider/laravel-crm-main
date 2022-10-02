@@ -60,7 +60,7 @@ class componentsController extends Controller
         Schema::create('component_' .  $component->id, function(Blueprint $table)
         {
             $table->increments('id');
-            $table->unsignedBigInteger('id_in_pages_and_components');
+            $table->unsignedBigInteger('infoblock_id');
         });
 
         creacte_model($component->id);

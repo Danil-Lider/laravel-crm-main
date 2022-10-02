@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\admin\pages_and_components;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-use App\Http\Controllers\Controller;
-use App\Models\Component_8;
-use App\Models\PageAndComponent;
-use Illuminate\Http\Request;
+namespace App\Http\Controllers\admin\infoblocks;
 
-class PagesAndComponentsController extends Controller
+use App\Http\Controllers\Controller;
+use App\Models\Infoblock;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
+
+class InfoblockController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,21 +37,22 @@ class PagesAndComponentsController extends Controller
      */
     public function store(Request $request)
     {
-
         $validated = $request->validate([
+            'name' => 'required',
             'page_id' => 'required',
             'component_id' => 'required',
+            'sort' => 'required',
         ]);
 
-        $PageAndComponent = new PageAndComponent();
+        $infoblock = new infoblock();
 
         foreach ($validated as $key => $item){
-            $PageAndComponent[$key] = $item;
+            $infoblock[$key] = $item;
         }
 
-        $PageAndComponent->save();
+        $infoblock->save();
         $back = url()->previous();
-        if($PageAndComponent){
+        if($infoblock){
             return redirect($back)->with('status', 'colum '.$request->name.' id add!');
         }else{
             return redirect($back)->with('status', 'ОШИБКА');
@@ -79,13 +79,14 @@ class PagesAndComponentsController extends Controller
      */
     public function edit($id)
     {
-
-        $page_and_component = PageAndComponent::where('id', $id)->first();
+        $page_and_component = infoblock::where('id', $id)->first();
 
         $class_name = 'App\Models\Component_' . $page_and_component->component_id;
-        $data = $class_name::where('id_in_pages_and_components', $id)->get();
+        $data = $class_name::where('infoblock_id', $id)->get();
 
         $attr = Schema::getColumnListing('component_8');
+
+//        ЗДЕСЬ ДОБАВИТЬ ЗНАЧЕНИЯ
 
         return view('layouts.admin.infoblock.index', compact('data', 'attr', 'id'));
     }
