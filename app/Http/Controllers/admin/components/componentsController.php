@@ -65,6 +65,7 @@ class componentsController extends Controller
 
         creacte_model($component->id);
 
+
         return redirect('/admin/components')->with('status', 'component add!');
     }
 
@@ -138,4 +139,32 @@ class componentsController extends Controller
     {
         //
     }
+
+}
+
+function creacte_model($id){
+
+    $text_php = '<?php ';
+    $table = '$table';
+    $text_php .= "namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Component_$id extends Model
+{
+    protected $table = 'component_$id';
+    use HasFactory;
+}
+";
+
+    $url = app_path() . '/Models/components/Component_' . $id . '.php';
+
+    $f = fopen($url, 'w');
+
+    # Добавим что-нибудь в файл
+    fwrite($f, $text_php);
+
+    # Закроем соединение с файлом
+    fclose($f);
 }

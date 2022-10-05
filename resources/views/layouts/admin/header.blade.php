@@ -231,14 +231,14 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="{{route('custom.index')}}" class="nav-link @if( Route::currentRouteName() == 'custom.index') active @endif">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Кастомные поля для страниц
-                            </p>
-                        </a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a href="{{route('custom.index')}}" class="nav-link @if( Route::currentRouteName() == 'custom.index') active @endif">--}}
+{{--                            <i class="nav-icon fas fa-th"></i>--}}
+{{--                            <p>--}}
+{{--                                Кастомные поля для страниц--}}
+{{--                            </p>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
 
 
                     <li class="nav-item ">
@@ -301,18 +301,20 @@
         </div>
         <!-- /.content-header -->
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        <div class="content">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-        @if (session('status'))
+            @if (session('status'))
                 <div class="alert alert-success">
                     {{ session('status') }}
                 </div>
-        @endif
+            @endif
+        </div>

@@ -19,12 +19,6 @@
                             </div>
                         </div>
 
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
                         <div class="card-body p-0">
                             <table class="table table-striped projects">
                                 <thead>

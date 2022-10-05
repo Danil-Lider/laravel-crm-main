@@ -1,6 +1,8 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,20 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-require __DIR__.'/auth.php';
-
+//1111111111
 
 Route::get('/admin', [\App\Http\Controllers\admin\pages\pageController::class, 'index'])->name('admin');
 
 Route::prefix('admin')->group(function () {
+
+//    dd(123);
 
     Route::resource('pages', \App\Http\Controllers\admin\pages\pageController::class);
 
@@ -53,3 +49,15 @@ Route::get('/catalog/{slug}', [\App\Http\Controllers\CatalogController::class, '
 Route::get('/catalog/{slug}/{product_id}', [\App\Http\Controllers\CatalogController::class, 'detail'])->name('catalog_detail');
 
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+
+echo __DIR__;
+require __DIR__ . '/auth.php';
