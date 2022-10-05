@@ -68,7 +68,7 @@
                     <!-- /.card -->
 
                     <div class="col-12">
-                        <a href="{{route('pages.create')}}" class="btn btn-success float-right">Создать новую страницу</a>
+                        <a href="{{ route('infoblock.values.create',[$id]) }}" class="btn btn-success float-right">Создать новую страницу</a>
 {{--                        <input type="submit" value="Create new Project" class="btn btn-success float-right">--}}
                     </div>
 

@@ -30,9 +30,15 @@ Route::prefix('admin')->group(function () {
 
     Route::resource('pages', \App\Http\Controllers\admin\pages\pageController::class);
 
+    // Создание и удаление компонентов
+
     Route::resource('components', \App\Http\Controllers\admin\components\componentsController::class);
 
+    // привязка инфоблоков к страницам
+
     Route::resource('infoblock', \App\Http\Controllers\admin\infoblocks\InfoblockController::class);
+
+    //    СОЗДАНИЕ И УДАЛЕНИЕ ЭЛЕМЕНТОВ ИНФОБЛОКА
 
     Route::resource('infoblock.values', \App\Http\Controllers\admin\infoblocks\InfoblockValuesController::class);
 

@@ -1,11 +1,10 @@
-<?php 
-namespace App\Models;
+<?php namespace App\Models\components;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Component_8  extends Model
+class Component_10 extends Model
 {
-    protected $table =  'component_8';
+    protected $table = 'component_10';
     use HasFactory;
 }

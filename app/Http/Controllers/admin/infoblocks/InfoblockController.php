@@ -81,12 +81,10 @@ class InfoblockController extends Controller
     {
         $page_and_component = infoblock::where('id', $id)->first();
 
-        $class_name = 'App\Models\Component_' . $page_and_component->component_id;
+        $class_name = 'App\Models\components\Component_' . $page_and_component->component_id;
         $data = $class_name::where('infoblock_id', $id)->get();
 
-        $attr = Schema::getColumnListing('component_8');
-
-//        ЗДЕСЬ ДОБАВИТЬ ЗНАЧЕНИЯ
+        $attr = Schema::getColumnListing('component_' . $id);
 
         return view('layouts.admin.infoblock.index', compact('data', 'attr', 'id'));
     }

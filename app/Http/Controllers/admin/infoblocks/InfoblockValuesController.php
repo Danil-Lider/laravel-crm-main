@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\admin\infoblocks;
 
 use App\Http\Controllers\Controller;
+use App\Models\Infoblock;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class InfoblockValuesController extends Controller
 {
@@ -22,9 +25,15 @@ class InfoblockValuesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($infoblock_id)
     {
-        //
+
+        $infoblock_info = Infoblock::FindOrFail($infoblock_id);
+        $component_id = $infoblock_info->component_id;
+        //$Model = 'App\Models\components\Component_' . $component_id;
+        $attr = Schema::getColumnListing('component_' . $component_id);
+
+        return view('layouts.admin.infoblock.values.create', compact('infoblock_id', 'component_id', 'attr'));
     }
 
     /**
@@ -35,7 +44,32 @@ class InfoblockValuesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'infoblock_id' => 'required',
+            'component_id' => 'required',
+        ]);
+
+        $component_id = $request->component_id;
+        $Model = 'App\Models\components\Component_' . $component_id;
+
+
+        $component = new $Model;
+        $attr = Schema::getColumnListing('component_' . $component_id);
+        foreach ($attr as $key => $item){
+            $component[$item] = $request->$item;
+        }
+        $component->save();
+
+
+        if($component){
+
+            return redirect('/admin/pages')->with('status', 'component add!');
+
+        }else{
+
+            return redirect('/admin/pages')->with('status', 'Error');
+        }
+
     }
 
     /**

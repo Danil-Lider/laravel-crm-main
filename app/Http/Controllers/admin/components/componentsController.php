@@ -146,7 +146,7 @@ function creacte_model($id){
 
     $text_php = '<?php ';
     $table = '$table';
-    $text_php .= "namespace App\Models;
+    $text_php .= "namespace App\Models\components;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
