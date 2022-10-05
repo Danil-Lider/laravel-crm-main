@@ -8,7 +8,7 @@
 </p>
 
 
-COMMANDS FOR START FOR DANILT TIBAKIN
+COMMANDS FOR START FOR DANIL TIBAKIN
 
 change .env for database 
 
@@ -20,7 +20,7 @@ npm install && npm run dev
 
 php artisan migrate
 
-copy web.php 
+CMS LIKE NETCAT
 
 ## About Laravel
 
