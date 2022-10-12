@@ -120,6 +120,9 @@ class pageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $infoblocks_delete = Infoblock::where('page_id', $id)->delete();
+        $page_delete = Page::where('id',$id)->delete();
+
+        return redirect('/admin/pages')->with('status', 'Page is deleted!');
     }
 }

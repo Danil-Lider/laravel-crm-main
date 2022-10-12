@@ -96,11 +96,22 @@
                                             </i>
                                             Edit
                                         </a>
-                                        <a class="btn btn-danger btn-sm" href="#">
-                                            <i class="fas fa-trash">
-                                            </i>
-                                            Delete
-                                        </a>
+
+                                        <form method="POST" action="{{ route('pages.destroy',$page->id) }}">
+                                            @csrf
+
+                                            @method('DELETE')
+
+                                            <button type="submit">
+                                                <a class="btn btn-danger btn-sm" href="#">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    Delete
+                                                </a>
+                                            </button>
+                                        </form>
+
+
                                     </td>
                                 </tr>
                                 @endforeach
