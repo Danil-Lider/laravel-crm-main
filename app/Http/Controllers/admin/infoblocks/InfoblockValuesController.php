@@ -56,7 +56,20 @@ class InfoblockValuesController extends Controller
         $component = new $Model;
         $attr = Schema::getColumnListing('component_' . $component_id);
         foreach ($attr as $key => $item){
-            $component[$item] = $request->$item;
+
+            switch ($item){
+                case 'id':
+                    break;
+                case 'created_at':
+                    break;
+                case 'updated_at':
+                    break;
+                default:
+                    $component[$item] = $request->$item;
+                    break;
+            }
+
+
         }
         $component->save();
 

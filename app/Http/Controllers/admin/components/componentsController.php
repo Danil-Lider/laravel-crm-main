@@ -61,6 +61,7 @@ class componentsController extends Controller
         {
             $table->increments('id');
             $table->unsignedBigInteger('infoblock_id');
+            $table->timestamps();
         });
 
         creacte_model($component->id);
